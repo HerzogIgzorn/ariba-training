@@ -52,14 +52,14 @@ To create the UI5 application, we are using [Easy-UI5](https://github.com/SAP/ge
 yo easy-ui5 ts-app
 ```
 
-Answer the questions (just set the namespace to `devtoberfest.app`, for the rest use the defaults) but skip the Git initializiation of the repository.
+Answer the questions (just set the namespace to `ariba.app`, for the rest use the defaults) but skip the Git initializiation of the repository.
 
 Your folder structure should look like that now:
 
 ```sh
 <root>
 ├── bookshop
-└── devtoberfest.app
+└── ariba.app
 ```
 
 The project is fully created and you can run the following commands in the project:
@@ -114,7 +114,7 @@ Configure the middleware in your `ui5.yaml`:
 ```yaml
 specVersion: "4.0"
 metadata:
-  name: devtoberfest.app
+  name: ariba.app
 type: application
 [...]
 server:
@@ -391,15 +391,15 @@ To create the UI5 library, we are using [Easy-UI5](https://github.com/SAP/genera
 yo easy-ui5 ts-library
 ```
 
-Answer the questions (just set the namespace to `devtoberfest.lib`, for the rest use the defaults) but skip the Git initializiation of the repository.
+Answer the questions (just set the namespace to `ariba.lib`, for the rest use the defaults) but skip the Git initializiation of the repository.
 
 Your folder structure should look like that now:
 
 ```sh
 <root>
 ├── bookshop
-├── devtoberfest.app
-└── devtoberfest.lib
+├── ariba.app
+└── ariba.lib
 ```
 
 Similar like the UI5 application in TypeScript, the library contains many scripts.
@@ -421,7 +421,7 @@ In the `ui5.yaml` we configure the middleware and the task:
 ```yaml
 specVersion: "4.0"
 metadata:
-  name: devtoberfest.lib
+  name: ariba.lib
 type: library
 [...]
 builder:
@@ -465,7 +465,7 @@ import { MetadataOptions } from "sap/ui/base/ManagedObject";
 import ChartRenderer from "./ChartRenderer";
 
 /**
- * Constructor for a new <code>devtoberfest.lib.Chart</code> control.
+ * Constructor for a new <code>ariba.lib.Chart</code> control.
  *
  * Some class description goes here.
  * @extends Control
@@ -475,14 +475,14 @@ import ChartRenderer from "./ChartRenderer";
  *
  * @constructor
  * @public
- * @namespace devtoberfest.lib
+ * @namespace ariba.lib
  */
 export default class Chart extends Control {
 
     private chart: ChartJS;
 
     static readonly metadata: MetadataOptions = {
-        library: "devtoberfest.lib",
+        library: "ariba.lib",
         properties: {
             title: {
                 type: "string",
@@ -493,7 +493,7 @@ export default class Chart extends Control {
         defaultAggregation: "items",
         aggregations: {
             items: {
-                type: "devtoberfest.lib.ChartItem",
+                type: "ariba.lib.ChartItem",
                 multiple: true
             }
         }
@@ -581,7 +581,7 @@ import { MetadataOptions } from "sap/ui/base/ManagedObject";
 import UI5Element from "sap/ui/core/Element";
 
 /**
- * Constructor for a new <code>devtoberfest.lib.ChartItem</code> control.
+ * Constructor for a new <code>ariba.lib.ChartItem</code> control.
  *
  * Some class description goes here.
  * @extends UI5Element
@@ -591,12 +591,12 @@ import UI5Element from "sap/ui/core/Element";
  *
  * @constructor
  * @public
- * @namespace devtoberfest.lib
+ * @namespace ariba.lib
  */
 export default class ChartItem extends UI5Element {
 
     static readonly metadata: MetadataOptions = {
-        library: "devtoberfest.lib",
+        library: "ariba.lib",
         properties: {
             text: {
                 type: "string",
@@ -628,12 +628,12 @@ import Lib from "sap/ui/core/Lib";
 import "sap/ui/core/library";
 
 /**
- * Initialization Code and shared classes of library devtoberfest.lib.
+ * Initialization Code and shared classes of library ariba.lib.
  */
 
 // delegate further initialization of this library to the Core
 const thisLib: { [key: string]: unknown } = Lib.init({
-    name: "devtoberfest.lib",
+    name: "ariba.lib",
     version: "${version}",
     dependencies: [
         // keep in sync with the ui5.yaml and .library files
@@ -641,8 +641,8 @@ const thisLib: { [key: string]: unknown } = Lib.init({
     ],
     types: [],
     interfaces: [],
-    controls: ["devtoberfest.lib.Chart"],
-    elements: ["devtoberfest.lib.ChartItem"],
+    controls: ["ariba.lib.Chart"],
+    elements: ["ariba.lib.ChartItem"],
     noLibraryCSS: true // if no CSS is provided, you can disable the library.css load here
 }) as { [key: string]: unknown };
 
@@ -659,20 +659,20 @@ Finally, we adopt the test page - therefore rename the `Example.html` to `Chart.
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Test Page for devtoberfest.lib.Chart</title>
+        <title>Test Page for ariba.lib.Chart</title>
         <base href="../../../" />
         <script
             src="resources/sap-ui-core.js"
             id="sap-ui-bootstrap"
             data-sap-ui-async="true"
             data-sap-ui-oninit="module:local/Chart"
-            data-sap-ui-libs="sap.ui.core,devtoberfest.lib"
+            data-sap-ui-libs="sap.ui.core,ariba.lib"
             data-sap-ui-theme="sap_horizon"
-            data-sap-ui-resourceroots='{"local" : "./test-resources/devtoberfest/lib/"}'
+            data-sap-ui-resourceroots='{"local" : "./test-resources/ariba/lib/"}'
         ></script>
     </head>
     <body class="sapUiBody">
-        <h1 id="header">Test Page for <code>devtoberfest.lib.Chart</code></h1>
+        <h1 id="header">Test Page for <code>ariba.lib.Chart</code></h1>
         <div id="content"></div>
     </body>
 </html>
@@ -681,8 +681,8 @@ Finally, we adopt the test page - therefore rename the `Example.html` to `Chart.
 The same for the `Example.ts` next to the `Chart.html`, rename it to `Chart.ts` and put the following content inside:
 
 ```ts
-import Chart from "devtoberfest/lib/Chart";
-import ChartItem from "devtoberfest/lib/ChartItem";
+import Chart from "ariba/lib/Chart";
+import ChartItem from "ariba/lib/ChartItem";
 
 // create a new instance of the Example control and
 // place it into the DOM element with the id "content"
@@ -701,7 +701,7 @@ new Chart({
 Last thing is to adopt the package.json to open the `Chart.html` instead of the `Example.html`, modify the start script like that:
 
 ```json
-"start": "ui5 serve -o test-resources/devtoberfest/lib/Chart.html",
+"start": "ui5 serve -o test-resources/ariba/lib/Chart.html",
 ```
 
 Now you can run the custom Chart control in your library project. The interfaces for the controls will be generated and the constructor code as suggested in the console must be added!
@@ -712,7 +712,7 @@ Hint: Excluding the library in the preload build (add to the `ui5.yaml the follo
 builder:
   libraryPreload:
     excludes:
-      - "devtoberfest/lib/thirdparty/"
+      - "ariba/lib/thirdparty/"
 ```
 
 ## Step 12: Connecting the app and the lib
@@ -726,13 +726,13 @@ npm run build
 Let's connect the app with the library. In the app project install the lib as dependency:
 
 ```sh
-npm i devtoberfest.lib@../devtoberfest.lib
+npm i ariba.lib@../ariba.lib
 ```
 
 Important next step is to add the library in the `tsconfig.json` as a type:
 
 ```json
-"types": ["@openui5/types", "@types/qunit", "devtoberfest.lib"],
+"types": ["@openui5/types", "@types/qunit", "ariba.lib"],
 ```
 
 This tells the `ui5-tooling-transpile` that this dependency must be transpiled during development.
@@ -740,7 +740,7 @@ This tells the `ui5-tooling-transpile` that this dependency must be transpiled d
 Now we can integrate the chart, in the `Main.view.xml`, we add the following code to the View XML tag to define the namespace mapping for the library:
 
 ```xml
-xmlns:dtlib="devtoberfest.lib"
+xmlns:dtlib="ariba.lib"
 ```
 
 And then we can add the chart control:
@@ -762,7 +762,7 @@ and register it in the `ui5.yaml`:
 ```yaml
 specVersion: "4.0"
 metadata:
-  name: devtoberfest.app
+  name: ariba.app
 type: application
 [...]
 server:
@@ -779,13 +779,13 @@ Now the chart.js is loaded there!
 ```yaml
 specVersion: "4.0"
 metadata:
-  name: devtoberfest.app
+  name: ariba.app
 type: application
 [...]
 builder:
   settings:
     includeDependency:
-      - devtoberfest.lib
+      - ariba.lib
     [...]
 ```
 
@@ -794,10 +794,6 @@ This adds the library to the dist folder of the application and it can be deploy
 ## Step 15: Testing
 
 To be continued...
-
-## Support, Feedback, Contributing
-
-This project is open to feature requests/suggestions, bug reports etc. via [GitHub issues](https://github.com/petermuessig/devtoberfest2024-typescript-e2e/issues). Contribution and feedback are encouraged and always welcome.
 
 ## License
 
