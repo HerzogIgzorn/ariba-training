@@ -1,8 +1,8 @@
-# TypeScript E2E Development – from zero to hero in 1hr!
+# TypeScript E2E Development
 
 This repository is a step-by-step guide explaining how to build a UI5 freestyle bookshop application on top of the booskop CAP server from the [Cloud CAP Samples](https://github.com/SAP-samples/cloud-cap-samples) project.
 
-The recorded session with a live-walkthrough can be found on YouTube: [🟠 UI5 Freestyle: TypeScript E2E Development - from zero to hero in 1hr!](https://www.youtube.com/watch?v=7aAehB4ejHQ).
+The recorded session with a live-walkthrough can be found on YouTube: [🟠 UI5 Freestyle: TypeScript E2E Development](https://www.youtube.com/watch?v=7aAehB4ejHQ).
 
 ## Preparation
 
@@ -20,7 +20,7 @@ To run the CAP server locally, you should also install the CAP SDK globally:
 npm install -g @sap/cds-dk
 ```
 
-Interested in more details about CAP, just got [here...](https://cap.cloud.sap/docs/).
+Interested in more details about CAP, just go [here...](https://cap.cloud.sap/docs/).
 
 ## Step 1: Prepare the bookshop server
 
@@ -171,7 +171,7 @@ Open the `manifest.json` of the application and add the following entries:
 In the `Main.view.xml` add the `sap.m.Table` control:
 
 ```xml
-<Table id="booksTable" items='{/Books}'>
+<Table id="booksTable" items="{/Books}">
     <columns>
         <Column>
             <Text text="Book" />
