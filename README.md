@@ -224,8 +224,8 @@ adopt the binding of the books to sort ascending by default:
 <Table id="booksTable" items='{
     path: "/Books",
     sorter: {
-        "path": "title",
-        "ascending": "true"
+        path: "title",
+        descending: false
     }
 }'/>
 ```
@@ -235,12 +235,15 @@ In the `Main.controller.ts`, add the following code:
 ```ts
 export default class Main extends BaseController {
     private _booksTable: Table;
+
     onInit(): void {
         this._booksTable = this.byId("booksTable") as Table;
     }
+
     public onBooksSort(event: Icon$PressEvent): void {
         const asc = event.getSource().getSrc() === "sap-icon://sort-ascending";
         const itemsBinding = this._booksTable.getBinding("items") as ODataListBinding;
+
         itemsBinding.sort(new Sorter("title", asc));
         event.getSource().setSrc(asc ? "sap-icon://sort-descending" : "sap-icon://sort-ascending");
     }
@@ -283,6 +286,7 @@ and extend the `onInit` callback to also store the reference to the book details
 ```ts
     private _booksTable: Table;
     private _bookDetails: Panel;
+
     onInit(): void {
             this._booksTable = this.byId("booksTable") as Table;
             this._bookDetails = this.byId("bookDetails") as Panel;
@@ -341,6 +345,7 @@ public init(): void {
 
     // login via Deferred Action Binding
     const oLoginAction = this.getModel("user").bindContext("/login(...)") as ODataContextBinding;
+
     oLoginAction.invoke().then(() => {
         this.getModel("user").refresh();
     }).catch((err) => {
@@ -372,8 +377,10 @@ In the `Main.controller.ts` we add the event handler to trigger the order:
 ```ts
 public async onBookOrder(event: Button$PressEvent): Promise<void> {
     const oAction = this.getModel().bindContext("/submitOrder(...)") as ODataContextBinding;
+
     oAction.setParameter("book", event.getSource().getBindingContext().getProperty("ID"));
     oAction.setParameter("quantity", 1);
+
     try {
         await oAction.invoke();
         this.getModel().refresh();
@@ -586,7 +593,7 @@ import UI5Element from "sap/ui/core/Element";
  * Some class description goes here.
  * @extends UI5Element
  *
- * @author Peter Muessig
+ * @author You
  * @version ${version}
  *
  * @constructor
